@@ -1,10 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>CLOUD GROUPE 7 FRONT</title>
 </head>
 <body>
-<h1>hello world all</h1>
+<h1 style="background: coral;" class="text-center">le formulaire sa mere</h1>
+<div class="row text-center">
+    <div class="col-12" style="background: coral;">
+        <form method="post" id="form">
+            <input type="text" name="firstname" class="form-control" placeholder="firstname" required>
+            <input type="text" name="lastname" class="form-control" placeholder="lastname" required>
+            <input type="text" name="url" class="form-control" placeholder="url" required>
+            <button type="button" id="submitBtn" class="btn btn-info btn-block mt-3">Add to Database</button>
+        </form>
+
+    </div>
+</div>
+<script type="text/javascript">
+
+    document.getElementById('submitBtn').addEventListener('click',()=>{
+        //alert('wsh frrot t\'as bien send nude');
+        const form = document.getElementById('form');
+
+        const data =
+            "{ \"firstname\": \"" + form.firstname.value +"\", \"lastname\":\"" + form.lastname.value +"\", \"url\":\"" + form.url.value +"\",}";
+
+        console.log(data);
+        const headers = new Headers();
+        const myInit = {
+            method: 'post',
+            headers,
+            body:JSON.stringify(data)
+        };
+        fetch('http://localhost:3000/add' ,myInit);
+
+        //https://cloud-groupe-7-api.herokuapp.com/add
+    });
+</script>
+<div className="row text-center">
+<h1 style="background: pink;" class="text-center">ICI LISTE DES IMAGES</h1>
+<div id="data"></div>
+<script type="text/javascript">
+    const headers = new Headers();
+    const myInit = {
+        method: 'GET',
+        headers,
+    };
+    const dataDiv = document.body;
+    fetch('https://cloud-groupe-7-api.herokuapp.com/images', myInit)
+        .then( (response) => {
+            return response.json();
+        })
+        .then((res) => {
+            //document.write('<h1 style="background: coral;" className="text-center">le formulaire sa mere</h1><div className="row text-center"><div className="col-12" style="background: coral;">formulaire </div> </div><h1 style="background: pink;" className="text-center">ICI LISTE DES IMAGES</h1>');
+            for (let i = 0; i < res.length; i++) {
+
+                //console.log(dataDiv);
+                const leftDiv = document.createElement('div');
+                leftDiv.className = "col-2";
+                leftDiv.style.background = 'aqua';
+                leftDiv.textContent = res[i]["lastname"] + " " + res[i]["firstname"] + " " + res[i]["url"];
+
+                const middleDiv = document.createElement('div');
+                middleDiv.className  = "col-8"
+                middleDiv.style.background = 'pink';
+
+                const image = document.createElement('img');
+                image.alt = 'image:' + res[i]["url"];
+                image.alt = res[i]["url"];
+                middleDiv.appendChild(image);
+
+                const rightDiv = document.createElement('div');
+                rightDiv.className = "col-2";
+                rightDiv.style.background = 'aqua';
+
+                dataDiv.appendChild(leftDiv);
+                dataDiv.appendChild(middleDiv);
+                dataDiv.appendChild(rightDiv);
+
+            }
+            console.log(res);
+        })
+        .catch((e) => {
+            console.log(e);
+            document.write(
+                '<div className="col-2" style="background: aqua;">' +
+                '</div>' +
+                '<div className="col-8" style="background: red;">' +
+                '<p>Error: ' + e + '</p>' +
+                '</div>' +
+                '<div className="col-2" style="background: aqua;">' +
+                '</div>');
+        });
+    /*.then(function(myBlob) {
+        var objectURL = URL.createObjectURL(myBlob);
+        myImage.src = objectURL;
+    });*/
+</script>
+</div>
 </body>
 </html>
