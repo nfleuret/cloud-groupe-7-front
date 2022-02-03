@@ -76,10 +76,10 @@
         url: formData.url.value
       });
 
-      var headers = new Headers();
+      const headers = new Headers();
       headers.append("Content-Type", "application/json");
 
-      var requestOptions = {
+      const requestOptions = {
         method: 'POST',
         headers,
         body,
@@ -88,8 +88,8 @@
 
       fetch("https://cloud-groupe-7-api.herokuapp.com/add", requestOptions)
         .then(res => res.text())
-        .then(res => alert(res))
-        .catch(e => alert(e));
+        .then(res => console.log(res))
+        .catch(e => console.log(e));
     }
   </script>
   <div className="row text-center">
