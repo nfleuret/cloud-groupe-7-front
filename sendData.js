@@ -16,9 +16,8 @@ function sendData() {
         body,
         mode:'cors'
     };
-alert(body);
     fetch("https://cloud-groupe-7-api.herokuapp.com/add", requestOptions)
         .then(res =>res.text())
         .then(res =>alert(res))
-        .catch(e => console.log(e));
+        .catch(e => alert(e));
 }

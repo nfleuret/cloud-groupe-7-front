@@ -16,15 +16,14 @@ fetch('https://cloud-groupe-7-api.herokuapp.com/images', getInit)
         for (let i = 0; i < res.length; i++) {
             const leftDiv = document.createElement('div');
             leftDiv.className = "col-2";
-            leftDiv.textContent = 'poster par: \"' + res[i]["lastname"] + ' ' + res[i]["firstname"] + '\"'
+            leftDiv.textContent = 'Commentaire poster par: \"' + res[i]["lastname"] + ' ' + res[i]["firstname"] + '\"'
 
             const middleDiv = document.createElement('div');
             middleDiv.className = "col-8"
             middleDiv.style.background = 'pink';
 
-            const image = document.createElement('img');
-            image.alt = 'image poster par:' + res[i]["firstname"];
-            image.src = res[i]["url"];
+            const image = document.createElement('span');
+            image.textContent = res[i]["url"];
             middleDiv.appendChild(image);
 
             const rightDiv = document.createElement('div');
