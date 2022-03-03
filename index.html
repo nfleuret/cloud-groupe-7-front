@@ -11,7 +11,6 @@
   <div class="col-12" style="background: coral;">
     <h1 style="background: coral;" class="text-center">InstaMilligram</h1>
   </div>
-
   <script src="./sendData.js" type="application/javascript"></script>
 
   <form method="post" class="needs-validation  border border-danger" id="needs-validation" novalidate>
@@ -30,13 +29,15 @@
           Looks good!
         </div>
       </div>
-      <div class="col-md-3 mb-3 custom-file">
-        <label for="url" class="custom-file-label">Url</label>
-        <input type="file" class="custom-file-input" id="url">
+
+      <div class="col-md-3 mb-3">
+        <label for="url">Commentaire</label>
+        <input type="text" class="form-control" id="url" name="url" placeholder="commentaire" required>
         <div class="valid-feedback">
           Looks good!
         </div>
       </div>
+
 
       <button class="btn btn-outline-info btn-sm col-md-3 mb-3" type="submit">send image</button>
     </div>
@@ -44,7 +45,7 @@
   <script type="text/javascript" src="validationForm.js"></script>
 
   <div class="row text-center">
-    <h1 style="background: pink;" class="text-center">ICI LISTE DES IMAGES</h1>
+    <h1 style="background: pink;" class="text-center">COMMENTAIRES</h1>
     <script type="text/javascript" src="getImages.js"></script>
   </div>
 </body>
